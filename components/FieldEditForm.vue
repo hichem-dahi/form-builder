@@ -13,7 +13,7 @@
       </UFormField>
 
       <UFormField v-if="field.type === 'Checkbox'" label="Choices">
-        <UInputTags v-model="field.choices" />
+        <UInputTags v-model="field.choices" add-on-blur />
       </UFormField>
 
       <!-- Required -->
