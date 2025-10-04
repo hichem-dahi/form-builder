@@ -35,6 +35,12 @@
 defineEmits(["cancel", "save"]);
 
 const field = defineModel({
-  default: { label: "", placeholder: "", required: false, type: "" },
+  default: {
+    label: "",
+    placeholder: "",
+    required: false,
+    type: "",
+    choices: [],
+  },
 });
 </script>
