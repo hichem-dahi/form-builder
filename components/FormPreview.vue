@@ -84,9 +84,7 @@ props.fields.forEach((field) => {
   }
 
   if (field.type === "Email") {
-    validator = string()
-      .email("Invalid email format")
-      .required(`${field.label} is required`);
+    validator = string().email("Invalid email format");
     initialValue = "";
   }
 
