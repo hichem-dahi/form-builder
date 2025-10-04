@@ -73,9 +73,11 @@ const form = ref({});
 const schemaShape = {};
 props.fields.forEach((field) => {
   let validator;
+  let initialValue = null;
 
   if (field.type === "Short text" || field.type === "Long text") {
     validator = string();
+    initialValue = "";
     if (field.required) {
       validator = validator.required(`${field.label} is required`);
     }
@@ -85,16 +87,20 @@ props.fields.forEach((field) => {
     validator = string()
       .email("Invalid email format")
       .required(`${field.label} is required`);
+    initialValue = "";
   }
 
   if (field.type === "Checkbox") {
     validator = array();
+    initialValue = [];
     if (field.required) {
       validator = validator.min(1, `${field.label} is required`);
     }
   }
 
   schemaShape[field.label] = validator;
+
+  form.value[field.label] = initialValue;
 });
 
 const schema = object(schemaShape);
