@@ -75,17 +75,17 @@ props.fields.forEach((field) => {
   let validator;
   let initialValue = null;
 
-  if (field.type === "Short text" || field.type === "Long text") {
+  if (field.type !== "Checkbox") {
     validator = string();
     initialValue = "";
+
+    if (field.type === "Email") {
+      validator = validator.email("Invalid email format");
+    }
+
     if (field.required) {
       validator = validator.required(`${field.label} is required`);
     }
-  }
-
-  if (field.type === "Email") {
-    validator = string().email("Invalid email format");
-    initialValue = "";
   }
 
   if (field.type === "Checkbox") {
